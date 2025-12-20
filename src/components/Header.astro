@@ -1,20 +1,58 @@
 ---
 import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
-import SocialLinks from "./SocialLinks.astro";
+import { Picture } from "astro:assets";
+import logoImage from "../assets/labirinto.png";
 ---
 
 <header>
   <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <h2>
+      <a href="/"
+        ><Picture src={logoImage} alt={SITE_TITLE} width="60" priority /></a
+      >
+    </h2>
     <div class="internal-links">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/contact">Contattaci</HeaderLink>
     </div>
-    <SocialLinks hideOnMobile={true} />
+    <div class="social-links">
+      <a
+        href="https://www.instagram.com/mercenari.del.labirinto/"
+        target="_blank"
+      >
+        <span class="sr-only">Segui i Mercenari del Labirinto su Instagram</span
+        >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 20 20"
+          ><path
+            fill="#2b2b2b"
+            d="M13 10a3 3 0 1 1-6 0q.001-.257.049-.5H6v3.997c0 .278.225.503.503.503h6.995a.503.503 0 0 0 .502-.503V9.5h-1.049q.048.243.049.5m-3 2a2 2 0 1 0-.001-4.001A2 2 0 0 0 10 12m2.4-4.1h1.199a.3.3 0 0 0 .301-.3V6.401a.3.3 0 0 0-.301-.301H12.4a.3.3 0 0 0-.301.301V7.6c.001.165.136.3.301.3M10 .4A9.6 9.6 0 0 0 .4 10a9.6 9.6 0 0 0 9.6 9.6a9.6 9.6 0 0 0 9.6-9.6A9.6 9.6 0 0 0 10 .4m5 13.489C15 14.5 14.5 15 13.889 15H6.111C5.5 15 5 14.5 5 13.889V6.111C5 5.5 5.5 5 6.111 5h7.778C14.5 5 15 5.5 15 6.111z"
+          ></path></svg
+        ></a
+      >
+      <a
+        href="https://www.facebook.com/mercenari.del.labirinto"
+        target="_blank"
+      >
+        <span class="sr-only">Segui i Mercenari del Labirinto su Facebook</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 20 20"
+          ><path
+            fill="#2b2b2b"
+            d="M17 1H3c-1.1 0-2 .9-2 2v14c0 1.101.9 2 2 2h7v-7H8V9.525h2v-2.05c0-2.164 1.212-3.684 3.766-3.684l1.803.002v2.605h-1.197c-.994 0-1.372.746-1.372 1.438v1.69h2.568L15 12h-2v7h4c1.1 0 2-.899 2-2V3c0-1.1-.9-2-2-2"
+          ></path></svg
+        ></a
+      >
+    </div>
   </nav>
 </header>
-
 <style>
   header {
     margin: 0;
@@ -46,9 +84,13 @@ import SocialLinks from "./SocialLinks.astro";
     text-decoration: none;
     border-bottom-color: var(--accent);
   }
-
-  .internal-links {
-	display: flex;
-	gap: 1em;
+  .social-links,
+  .social-links a {
+    display: flex;
+  }
+  @media (max-width: 720px) {
+    .social-links {
+      display: none;
+    }
   }
 </style>

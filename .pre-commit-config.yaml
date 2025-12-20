@@ -17,4 +17,4 @@ repos:
       - id: prettier
         name: Prettier Formatter
         language: system
-        entry: npx prettier . -c --write
+        entry: npx prettier . --write

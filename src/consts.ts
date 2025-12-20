@@ -1,5 +1,7 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Mercenari del Labirinto';
-export const SITE_DESCRIPTION = 'Sito ufficiale dei Mercenari del Labirinto A.S.D.';
+export const SITE_TITLE = "Mercenari del Labirinto";
+export const SITE_SHORT_TITLE = "Mercenari";
+export const SITE_DESCRIPTION =
+  "Sito ufficiale dei Mercenari del Labirinto A.S.D.";

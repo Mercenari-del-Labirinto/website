@@ -21,6 +21,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             src={logoImage}
             alt="Logo Mercenari del Labirinto"
             width="300"
+            priority
           />
         </div>
         <div class="intro-text">
@@ -36,7 +37,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
     </main>
 
     <style>
-      .intro { display: flow-root; }
+      .intro {
+        display: flow-root;
+      }
       .logo-wrap {
         width: 200px;
         margin: 0 auto 1rem auto;
@@ -47,7 +50,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         width: 100%;
         height: auto;
       }
-      .intro-text { overflow: hidden; }
+      .intro-text {
+        overflow: hidden;
+      }
 
       @media (min-width: 768px) {
         .logo-wrap {

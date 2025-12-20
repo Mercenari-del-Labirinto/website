@@ -2,8 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import { Picture } from "astro:assets";
-import logoImage from "../assets/logo.png";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -15,7 +13,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   <body>
     <Header />
     <main>
-	  <h2>Contattaci</h2>
+      <h2>Contattaci</h2>
       <form
         id="fs-frm"
         name="simple-contact-form"
@@ -29,7 +27,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
             type="text"
             name="name"
             id="full-name"
-            placeholder="First and Last"
+            placeholder="Nome e Cognome"
             required=""
           />
           <label for="email-address">La tua email</label>
@@ -74,7 +72,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         border: none;
         border-radius: 0;
         display: block;
-        width: 100%;
+        width: auto;
         padding: 0;
         margin: 0;
         -webkit-appearance: none;
@@ -111,7 +109,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       }
       #fs-frm [type="text"],
       #fs-frm [type="email"] {
-        width: 100%;
+        width: auto;
       }
       #fs-frm [type="button"],
       #fs-frm [type="submit"],
