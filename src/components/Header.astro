@@ -11,7 +11,7 @@ import SocialLinks from "./SocialLinks.astro";
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/contact">Contattaci</HeaderLink>
     </div>
-    <SocialLinks />
+    <SocialLinks hideOnMobile={true} />
   </nav>
 </header>
 
@@ -46,13 +46,9 @@ import SocialLinks from "./SocialLinks.astro";
     text-decoration: none;
     border-bottom-color: var(--accent);
   }
-  .social-links,
-  .social-links a {
-    display: flex;
-  }
-  @media (max-width: 720px) {
-    .social-links {
-      display: none;
-    }
+
+  .internal-links {
+	display: flex;
+	gap: 1em;
   }
 </style>

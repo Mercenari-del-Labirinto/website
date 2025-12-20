@@ -38,9 +38,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
     <style>
       .intro { display: flow-root; }
       .logo-wrap {
-        float: left;
         width: 200px;
-        margin: 0 3rem 1rem 0;
+        margin: 0 auto 1rem auto;
       }
       .logo-wrap picture,
       .logo-wrap img {
@@ -49,6 +48,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         height: auto;
       }
       .intro-text { overflow: hidden; }
+
+      @media (min-width: 768px) {
+        .logo-wrap {
+          float: left;
+          margin: 0 3rem 1rem 0;
+        }
+      }
     </style>
     <Footer />
   </body>
