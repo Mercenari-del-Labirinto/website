@@ -226,7 +226,7 @@ title: Statuto
 
 ### ESERCIZIO SOCIALE
 
-### Articolo 12
+#### Articolo 12
 
 1. L’esercizio sociale va dal 01/01 al 31/12 di ogni anno. Il Consiglio Direttivo
    deve predisporre il bilancio, redatto anche nella forma di rendiconto
