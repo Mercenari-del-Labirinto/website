@@ -3,20 +3,24 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-const { lang = "it" } = Astro.props;
+const { lang = "it", frontmatter } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={frontmatter.title
+        ? `${frontmatter.title} - ${SITE_TITLE}`
+        : SITE_TITLE}
+      description={SITE_DESCRIPTION}
+    />
   </head>
   <body>
     <Header />
     <main>
       <article>
         <slot />
-        <!-- your content is injected here -->
       </article>
     </main>
     <Footer />
