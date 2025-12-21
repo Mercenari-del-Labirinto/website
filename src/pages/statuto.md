@@ -49,7 +49,7 @@ title: Statuto
       didattica, la preparazione e l’assistenza all’attività sportiva
       dilettantistica, in particolare in discipline quali, a titolo
       esemplificativo e non esaustivo, quelle del Tiro con l’arco alla
-      targa.Per il raggiungimento degli scopi l’associazione agirà con ogni
+      targa. Per il raggiungimento degli scopi l’associazione agirà con ogni
       mezzo di promozione ritenuto idoneo ed in particolare, mediante
       l’organizzazione e la partecipazione a manifestazioni, competizioni
       sportive, convegni e incontri atti a sensibilizzare l’opinione pubblica
@@ -163,7 +163,7 @@ title: Statuto
 #### Articolo 9
 
 1. Il socio recede dall’associazione presentando le proprie dimissioni per
-   iscritto al ConsiglioDirettivo.
+   iscritto al Consiglio Direttivo.
 2. L’esclusione sarà deliberata dal Consiglio Direttivo nei confronti del socio:
    1. che non ottemperi alle disposizioni del presente statuto, degli eventuali
       regolamenti e delle deliberazioni adottate dagli organi dell’Associazione;
@@ -403,7 +403,7 @@ title: Statuto
 #### Articolo 22
 
 1. L’organo di revisione può essere eletto dall'Assemblea. Può essere sia
-   monocratico che collegiale resta in carica per quattro anni.
+   monocratico che collegiale. Resta in carica per quattro anni.
 2. L’organo collegiale è composto da tre membri effettivi e due supplenti,
    scelti anche fra i non soci.
 3. L’organo controlla l’amministrazione dell’Associazione, la corrispondenza del
