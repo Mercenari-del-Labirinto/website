@@ -5,7 +5,7 @@ title: Chi Siamo
 
 ![foto di gruppo Lucca Historiae 2025](../assets/gruppo-2025.jpg)
 
-L’associazione sportivo dilettantistica **Mercenari del Labirinto** è nata a
+L’associazione sportiva dilettantistica **Mercenari del Labirinto** è nata a
 Lucca nel 2021 dall’iniziativa di un gruppo di appassionati di rievocazione
 storica medievale e sport. L’associazione ha come obiettivo la promozione e
 l’organizzazione di attività di rievocazione storica, unite alla pratica
