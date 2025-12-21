@@ -29,7 +29,7 @@ title: Statuto
    processi democratici dell’organismo o degli organismi sportivi affilianti nel
    rispetto dei relativi statuti e regolamenti.
 4. I colori sociali sono rosso e nero. L’emblema dell’associazione è
-   rappresentato un disegno stilizzato raffigurante un labirinto.
+   rappresentato da un disegno stilizzato raffigurante un labirinto.
 
 ### TITOLO II – Scopo – Oggetto
 
@@ -84,7 +84,7 @@ title: Statuto
    propri associati. Lo svolgimento di attività diverse da quelle sportive viene
    deliberato dal Consiglio Direttivo ed è subordinato alla circostanza che si
    qualifichino come attività secondarie e strumentali rispetto alle attività
-   sportive
+   sportive.
 
 ### TITOLO III – Soci
 
@@ -104,7 +104,7 @@ title: Statuto
    disgiuntamente all’ammissione dei soci. All’atto dell’accettazione della
    richiesta da parte dell’Associazione, che potrà essere comunicata anche
    verbalmente all’interessato, il richiedente acquisirà ad ogni effetto la
-   qualifica di socio e il Consiglio Direttivo, o persona delega, provvederà
+   qualifica di socio e il Consiglio Direttivo, o persona delegata, provvederà
    all’aggiornamento del libro degli associati.
 3. L’eventuale diniego di ammissione, debitamente motivato, deve essere
    comunicato per iscritto all’interessato entro sessanta giorni dalla
