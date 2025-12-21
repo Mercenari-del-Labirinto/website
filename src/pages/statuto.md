@@ -31,7 +31,7 @@ title: Statuto
 4. I colori sociali sono rosso e nero. L’emblema dell’associazione è
    rappresentato un disegno stilizzato raffigurante un labirinto.
 
-### TITOLO II – Scopo- Oggetto
+### TITOLO II – Scopo – Oggetto
 
 #### Articolo 2
 
@@ -132,7 +132,7 @@ title: Statuto
    - diritto di accedere ai libri sociali come indicato dall’articolo 23 dello
      statuto;
    - dovere di osservare lo Statuto, gli eventuali Regolamenti approvati
-     dall’Assemblea dei soci e ledeliberazioni assunte dagli organi sociali;
+     dall’Assemblea dei soci e le deliberazioni assunte dagli organi sociali;
    - dovere di concorrere alle spese generali dell’associazione e di
      corrispondere quanto deliberato per la partecipazione a specifiche
      iniziative.
@@ -262,7 +262,7 @@ title: Statuto
    almeno otto giorni prima dell’adunanza.
 4. È prevista la possibilità di intervenire in assemblea mediante mezzi di
    telecomunicazione o di esprimere il voto per corrispondenza o in via
-   elettronica, purchè sia possibile verificare l’identità dell’associato che
+   elettronica, purché sia possibile verificare l’identità dell’associato che
    partecipa e vota. Le modalità di partecipazione sono definite nella delibera
    del consiglio direttivo di convocazione dell’assemblea.
 
