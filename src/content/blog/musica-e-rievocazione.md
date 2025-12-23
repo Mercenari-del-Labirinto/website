@@ -23,7 +23,7 @@ sotto il palco delle donne, si vedono due suonatori di cornamusa. L'immagine è
 tratta da un manoscritto milanese del 1370 circa.
 
 ![Particolare con i suonatori di cornamusa](../../assets/musica/trombe-e-cornamuse-sul-campo-di-battaglia-milano-1370-zoom.jpg)
-_Particolare con i suonatori di cornamusa del torneo medievale_
+_Dettaglio da un manoscritto milanese del 1370 circa: due suonatori di cornamusa durante un torneo medievale._
 
 E, infine, anche negli **accampamenti** risuonano note e canti: le canzonacce
 sguaiate dei militi, qualcuno che si è portato dietro uno strumento musicale e
