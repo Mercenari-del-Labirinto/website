@@ -5,3 +5,4 @@ export const SITE_TITLE = "Mercenari del Labirinto";
 export const SITE_SHORT_TITLE = "Mercenari";
 export const SITE_DESCRIPTION =
   "Sito ufficiale dei Mercenari del Labirinto A.S.D.";
+export const SITE_LOCALE = "it-IT";
