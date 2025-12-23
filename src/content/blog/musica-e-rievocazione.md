@@ -1,6 +1,6 @@
 ---
 title: Musica e Rievocazione
-description: Lorem ipsum dolor sit amet
+description: "Breve viaggio nella musica medievale: tamburi, trombe e cornamuse tra battaglie, tornei e accampamenti."
 pubDate: "Dec 23 2025"
 heroImage: "../../assets/musica/trombe-e-cornamuse-sul-campo-di-battaglia-milano-1370.jpg"
 author: Alessandro Valli
