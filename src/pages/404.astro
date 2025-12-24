@@ -1,0 +1,530 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <BaseHead title={`${SITE_TITLE} — 404`} description={SITE_DESCRIPTION} />
+    <style>
+      /* Scope color variables to the game panel to avoid light text on page background */
+      .notfound {
+        --bg: #0f172a;
+        --panel: #111827;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --accent: #f59e0b;
+        --good: #22c55e;
+        --bad: #ef4444;
+      }
+
+      /* Slightly smaller external page heading */
+      #nf-title {
+        font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      }
+
+      main {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem 0 2rem;
+      }
+
+      .notfound {
+        display: grid;
+        gap: 1rem;
+        background: var(--panel);
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.25) inset,
+          0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .notfound .title {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        color: var(--text);
+        margin: 0;
+      }
+
+      .notfound .subtitle {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .hud {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .hud .pill {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        padding: 0.35rem 0.65rem;
+        color: var(--text);
+        font-size: 0.9rem;
+      }
+
+      .canvas-wrap {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        isolation: isolate;
+        background: linear-gradient(180deg, #1f2937 0%, #0b1020 100%);
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 52vh;
+        min-height: 360px;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+
+      .btns {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text);
+        padding: 0.55rem 0.85rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition:
+          transform 0.08s ease,
+          background 0.2s ease;
+        user-select: none;
+      }
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .home-link {
+        text-decoration: none;
+        color: #fff;
+        background: var(--accent);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        padding: 0.55rem 0.85rem;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 1px, 1px);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div>
+        <h1 id="nf-title" class="title">404 — Pagina non trovata</h1>
+        <p class="subtitle">Nel dubbio… scocca una freccia!</p>
+      </div>
+      <section class="notfound" aria-labelledby="nf-title">
+        <div class="header">
+          <div class="hud" aria-live="polite" aria-atomic="true">
+            <div class="pill">Punteggio: <span id="score">0</span></div>
+            <div class="pill">Tiri: <span id="shots">0</span></div>
+            <div class="pill">Miglior colpo: <span id="best">0</span></div>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas
+            id="range"
+            width="960"
+            height="520"
+            aria-label="Campo di tiro con l'arco"></canvas>
+          <div class="sr-only" id="live" aria-live="polite"></div>
+        </div>
+
+        <div class="controls">
+          <div>
+            Controlli: muovi il mouse per l'angolo, clic o barra spaziatrice per
+            tirare.
+          </div>
+          <div class="btns">
+            <button class="btn" id="btn-shoot" type="button"
+              >Tira (Space)</button
+            >
+            <button class="btn" id="btn-reset" type="button">Reset</button>
+            <a class="home-link" href="/">Torna alla Home</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+
+    <script>
+      // @ts-nocheck
+      // Archery mini‑game — self-contained, no deps
+      (function () {
+        const canvas = document.getElementById("range");
+        const ctx = canvas.getContext("2d");
+        const DPR = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+
+        // Resize for DPR while keeping CSS size
+        function fit() {
+          const rect = canvas.getBoundingClientRect();
+          canvas.width = Math.floor(rect.width * DPR);
+          canvas.height = Math.floor(rect.height * DPR);
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0); // draw in CSS pixels
+        }
+        fit();
+        addEventListener("resize", fit);
+
+        // Game state
+        const gravity = 0.38; // px/s^2 (scaled per frame)
+        const windMax = 0.08;
+        let wind = 0;
+        let windTarget = 0;
+        let windTick = 0;
+
+        const groundY = () => canvas.height / DPR - 40;
+        const archer = { x: 80, y: groundY(), angle: -0.7 };
+        const arrows = [];
+
+        const target = {
+          // target sits to the right third of field
+          get x() {
+            return (canvas.width / DPR) * 0.75;
+          },
+          get y() {
+            return groundY() - 40;
+          },
+          r: 48,
+        };
+
+        let score = 0,
+          shots = 0,
+          best = 0;
+        const scoreEl = document.getElementById("score");
+        const shotsEl = document.getElementById("shots");
+        const bestEl = document.getElementById("best");
+        const liveEl = document.getElementById("live");
+
+        function announce(msg) {
+          liveEl.textContent = msg;
+        }
+
+        function lerp(a, b, t) {
+          return a + (b - a) * t;
+        }
+
+        function newArrow(power) {
+          const speed = 12 + power * 8; // basic charge mechanic
+          const vx = Math.cos(archer.angle) * speed;
+          const vy = Math.sin(archer.angle) * speed;
+          arrows.push({
+            x: archer.x + 24,
+            y: archer.y - 24,
+            vx,
+            vy,
+            fly: true,
+            stuck: false,
+          });
+          shots++;
+          shotsEl.textContent = shots;
+        }
+
+        // Input: mouse controls aim, space/click to shoot
+        let charging = false;
+        let charge = 0;
+        const maxCharge = 1.0;
+        canvas.addEventListener("mousemove", (e) => {
+          const rect = canvas.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+          const dx = mx - archer.x,
+            dy = my - (archer.y - 24);
+          archer.angle = Math.atan2(dy, dx);
+          // clamp to upper hemisphere
+          if (archer.angle > -0.1) archer.angle = -0.1;
+          if (archer.angle < -1.2) archer.angle = -1.2;
+        });
+
+        function shoot() {
+          newArrow(charge);
+          charging = false;
+          charge = 0;
+        }
+
+        canvas.addEventListener("mousedown", () => {
+          charging = true;
+        });
+        addEventListener("mouseup", () => {
+          if (charging) shoot();
+        });
+        document.getElementById("btn-shoot").addEventListener("click", () => {
+          shoot();
+        });
+
+        addEventListener("keydown", (e) => {
+          if (e.code === "Space") {
+            e.preventDefault();
+            shoot();
+          }
+        });
+
+        document.getElementById("btn-reset").addEventListener("click", reset);
+
+        function reset() {
+          arrows.length = 0;
+          score = 0;
+          shots = 0;
+          best = 0;
+          scoreEl.textContent = "0";
+          shotsEl.textContent = "0";
+          bestEl.textContent = "0";
+          announce("Gioco resettato.");
+        }
+
+        function updateWind() {
+          windTick++;
+          if (windTick % 180 === 0) {
+            windTarget = (Math.random() * 2 - 1) * windMax; // new wind
+          }
+          wind = lerp(wind, windTarget, 0.01);
+        }
+
+        function ringScore(d) {
+          const r = target.r;
+          if (d < r * 0.2) return 10;
+          if (d < r * 0.4) return 8;
+          if (d < r * 0.6) return 5;
+          if (d < r * 0.8) return 3;
+          if (d < r * 1.0) return 1;
+          return 0;
+        }
+
+        function step() {
+          requestAnimationFrame(step);
+          updateWind();
+
+          // charging animation
+          if (charging) charge = Math.min(maxCharge, charge + 0.012);
+
+          // physics
+          for (const a of arrows) {
+            if (!a.fly) continue;
+            a.vx += wind;
+            a.vy += gravity;
+            a.x += a.vx;
+            a.y += a.vy;
+
+            // hit ground
+            if (a.y >= groundY()) {
+              a.y = groundY();
+              a.fly = false;
+              a.stuck = true;
+            }
+
+            // hit target (approximate as circle)
+            const dx = a.x - target.x,
+              dy = a.y - target.y;
+            const d = Math.hypot(dx, dy);
+            if (d < target.r && !a.scored) {
+              a.fly = false;
+              a.stuck = true;
+              a.scored = true;
+              const s = ringScore(d);
+              score += s;
+              best = Math.max(best, s);
+              scoreEl.textContent = score;
+              bestEl.textContent = best;
+              announce(s > 0 ? `Colpito! +${s} punti` : "Mancato!");
+            }
+          }
+
+          draw();
+        }
+
+        function drawBackground() {
+          const w = canvas.width / DPR,
+            h = canvas.height / DPR;
+          // sky gradient (already via CSS), add subtle stars
+          ctx.save();
+          ctx.globalAlpha = 0.25;
+          for (let i = 0; i < 30; i++) {
+            const x = (i * 73) % w;
+            const y = (i * 97) % (h * 0.6);
+            ctx.fillStyle = "white";
+            ctx.fillRect(x, y, 1.2, 1.2);
+          }
+          ctx.restore();
+
+          // ground
+          ctx.fillStyle = "#0a3115";
+          ctx.fillRect(0, groundY(), w, h - groundY());
+          ctx.fillStyle = "#0e3d1b";
+          for (let i = 0; i < w; i += 16) {
+            ctx.fillRect(i, groundY() + ((i * 7) % 8), 12, 3);
+          }
+        }
+
+        function drawArcher() {
+          const x = archer.x,
+            y = archer.y;
+          // simple archer avatar
+          ctx.save();
+          ctx.translate(x, y);
+          // body
+          ctx.fillStyle = "#cbd5e1";
+          ctx.fillRect(-8, -40, 16, 36);
+          // head
+          ctx.beginPath();
+          ctx.arc(0, -48, 8, 0, Math.PI * 2);
+          ctx.fillStyle = "#e5e7eb";
+          ctx.fill();
+          // bow
+          ctx.strokeStyle = "#8b5a2b";
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(10, -36);
+          ctx.quadraticCurveTo(26, -28, 10, -8);
+          ctx.stroke();
+          // string
+          ctx.strokeStyle = "#f8fafc";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(10, -36);
+          ctx.lineTo(10, -8);
+          ctx.stroke();
+
+          // arrow being aimed (ghost)
+          ctx.rotate(archer.angle);
+          ctx.translate(12, -24);
+          const len = 28 + charge * 10;
+          ctx.fillStyle = "rgba(255,255,255,.7)";
+          ctx.fillRect(0, -1.5, len, 3);
+          ctx.fillStyle = "#ef4444";
+          ctx.fillRect(len - 4, -3, 6, 6);
+          ctx.restore();
+        }
+
+        function drawTarget() {
+          const x = target.x,
+            y = target.y,
+            r = target.r;
+          const rings = [
+            ["#ffffff", 1.0],
+            ["#2563eb", 0.8],
+            ["#dc2626", 0.6],
+            ["#f59e0b", 0.4],
+            ["#22c55e", 0.2],
+          ];
+          for (const [color, f] of rings) {
+            ctx.beginPath();
+            ctx.fillStyle = color;
+            ctx.arc(x, y, r * f, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          // stand
+          ctx.strokeStyle = "#6b7280";
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(x - 10, y + r);
+          ctx.lineTo(x - 26, groundY());
+          ctx.moveTo(x + 10, y + r);
+          ctx.lineTo(x + 26, groundY());
+          ctx.stroke();
+        }
+
+        function drawArrows() {
+          for (const a of arrows) {
+            ctx.save();
+            ctx.translate(a.x, a.y);
+            const angle = Math.atan2(a.vy, a.vx);
+            ctx.rotate(angle);
+            ctx.fillStyle = "#e5e7eb";
+            ctx.fillRect(-10, -1.2, 22, 2.4);
+            // fletching
+            ctx.fillStyle = "#ef4444";
+            ctx.fillRect(-12, -2.5, 4, 5);
+            ctx.restore();
+          }
+        }
+
+        function drawWind() {
+          const w = canvas.width / DPR;
+          ctx.save();
+          ctx.globalAlpha = 0.45;
+          ctx.strokeStyle = "#60a5fa";
+          ctx.lineWidth = 1;
+          for (let y = 40; y < 140; y += 16) {
+            const x0 = 16 + ((windTick + y * 3) % 64);
+            ctx.beginPath();
+            ctx.moveTo(x0, y);
+            ctx.quadraticCurveTo(x0 + 30, y - 6, x0 + 60, y);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        function drawHUD() {
+          // little wind indicator
+          const cx = 16,
+            cy = 16;
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.fillStyle = "rgba(0,0,0,.35)";
+          ctx.fillRect(0, 0, 76, 24);
+          ctx.fillStyle = "#bfdbfe";
+          ctx.fillRect(8, 10, (56 * wind) / windMax / 2 + 28, 4);
+          ctx.fillStyle = "#60a5fa";
+          ctx.fillRect(36, 8, 4, 8);
+          ctx.restore();
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+          drawBackground();
+          drawTarget();
+          drawArcher();
+          drawArrows();
+          drawWind();
+          drawHUD();
+        }
+
+        step();
+      })();
+    </script>
+  </body>
+</html>
