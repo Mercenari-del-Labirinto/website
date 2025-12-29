@@ -95,6 +95,9 @@ p {
 .prose p + ol {
   margin-top: -2em;
 }
+.prose img {
+  margin-bottom: 2em;
+}
 textarea {
   width: 100%;
   font-size: 16px;
@@ -109,7 +112,6 @@ img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  margin-bottom: 2em;
 }
 code {
   padding: 2px 5px;
