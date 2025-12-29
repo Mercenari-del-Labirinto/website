@@ -9,6 +9,6 @@ export default defineConfig({
   site: "https://mercenari.org",
   integrations: [mdx(), sitemap()],
   redirects: {
-    "/blog/musica-e-rievocazione": "/blog/2025/musica-e-rievocazione",
+    "/blog/musica-e-rievocazione/": "/blog/2025/musica-e-rievocazione/",
   },
 });
