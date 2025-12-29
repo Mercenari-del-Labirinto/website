@@ -2,7 +2,7 @@
 title: Musica e Rievocazione
 description: "Breve viaggio nella musica medievale: tamburi, trombe e cornamuse tra battaglie, tornei e accampamenti."
 pubDate: "Dec 23 2025"
-heroImage: "../../assets/musica/trombe-e-cornamuse-sul-campo-di-battaglia-milano-1370.jpg"
+heroImage: "../../../assets/musica/trombe-e-cornamuse-sul-campo-di-battaglia-milano-1370.jpg"
 author: Alessandro Valli
 ---
 
@@ -22,7 +22,7 @@ vediamo l'immagine di un **torneo** in cui, nell'angolo in alto a sinistra,
 sotto il palco delle donne, si vedono due suonatori di cornamusa. L'immagine è
 tratta da un manoscritto milanese del 1370 circa.
 
-![Particolare con i suonatori di cornamusa](../../assets/musica/trombe-e-cornamuse-sul-campo-di-battaglia-milano-1370-zoom.jpg)
+![Particolare con i suonatori di cornamusa](../../../assets/musica/trombe-e-cornamuse-sul-campo-di-battaglia-milano-1370-zoom.jpg)
 _Dettaglio da un manoscritto milanese del 1370 circa: due suonatori di cornamusa durante un torneo medievale._
 
 E, infine, anche negli **accampamenti** risuonano note e canti: le canzonacce

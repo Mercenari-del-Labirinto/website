@@ -90,6 +90,14 @@ p {
 .prose p {
   margin-bottom: 2em;
 }
+/* Reduce gap when a paragraph is immediately followed by a list */
+.prose p + ul,
+.prose p + ol {
+  margin-top: -2em;
+}
+.prose img {
+  margin-bottom: 2em;
+}
 textarea {
   width: 100%;
   font-size: 16px;
