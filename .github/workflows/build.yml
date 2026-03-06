@@ -1,0 +1,13 @@
+name: Build
+on:
+  schedule:
+    - cron: "45 7 * * 1"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger
+        run: |
+          curl -X POST "${{ secrets.CLOUDFLARE_BUILD_TRIGGER_URL }}"
