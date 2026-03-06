@@ -13,7 +13,7 @@ const googleCalendarLink = `https://www.google.com/calendar/render?cid=${encodeU
 const response = await fetch(icalUrl);
 const text = await response.text();
 const data = ical.parseICS(text);
-const dateOpts = { day: "2-digit", month: "long" };
+const dateOpts = { weekday: "long", day: "2-digit", month: "long" };
 const now = new Date();
 
 // Convert to a clean array
