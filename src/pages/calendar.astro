@@ -1,0 +1,82 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import ical from "node-ical";
+
+// Fetch the ics file
+const icalUrl =
+  "https://calendar.google.com/calendar/ical/c_07e44ac03455c9b1e8e5ee8c1d758a243855038cabb4afd18c567c7495304b42%40group.calendar.google.com/public/basic.ics";
+const googleCalendarLink = `https://www.google.com/calendar/render?cid=${encodeURIComponent(icalUrl)}`;
+const response = await fetch(icalUrl);
+const text = await response.text();
+const data = ical.parseICS(text);
+const dateOpts = { weekday: "long", day: "2-digit", month: "long" };
+const now = new Date();
+
+// Convert to a clean array
+const events = Object.values(data)
+  .filter((event) => event && event.type === "VEVENT")
+  .filter((event) => new Date(event?.start) >= now)
+  .map((event) => ({
+    title: event?.summary,
+    description: event?.description,
+    start: new Date(event?.start).toLocaleDateString("it-IT", dateOpts),
+    end: new Date(event?.end - 1 * 24 * 60 * 60 * 1000).toLocaleDateString(
+      "it-IT",
+      dateOpts,
+    ),
+    startRaw: new Date(event?.start),
+  }))
+  .sort((a, b) => a.startRaw - b.startRaw);
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>Calendario Eventi {now.getFullYear()}</h1>
+      <div class="calendar-grid">
+        {
+          events.map((event) => (
+            <div class="event-card">
+              <h3>{event.title}</h3>
+              <div class="event-date">
+                {event.start !== event.end
+                  ? `${event.start} - ${event.end}`
+                  : event.start}
+              </div>
+              {event.description && <p>{event.description}</p>}
+            </div>
+          ))
+        }
+        <div>
+          <a href={googleCalendarLink}>Aggiungi al tuo Google Calendar</a>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .calendar-grid {
+    display: grid;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+  .event-card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+  }
+  .event-date {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+</style>
