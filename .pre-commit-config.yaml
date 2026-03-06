@@ -18,3 +18,4 @@ repos:
         name: Prettier Formatter
         language: system
         entry: npm run format
+        pass_filenames: false
