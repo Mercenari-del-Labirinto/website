@@ -47,11 +47,11 @@ const events = Object.values(data)
           events.map((event) => (
             <div class="event-card">
               <h3>{event.title}</h3>
-              <p>
+              <div class="event-date">
                 {event.start !== event.end
                   ? `${event.start} - ${event.end}`
                   : event.start}
-              </p>
+              </div>
               {event.description && <p>{event.description}</p>}
             </div>
           ))
@@ -68,10 +68,16 @@ const events = Object.values(data)
 <style>
   .calendar-grid {
     display: grid;
+    margin-top: 2rem;
     gap: 1rem;
   }
   .event-card {
     border: 1px solid #ccc;
     padding: 1rem;
+  }
+  .event-date {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
   }
 </style>
