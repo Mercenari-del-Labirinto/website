@@ -13,6 +13,7 @@ const googleCalendarLink = `https://www.google.com/calendar/render?cid=${encodeU
 const response = await fetch(icalUrl);
 const text = await response.text();
 const data = ical.parseICS(text);
+const dateOpts = { day: "2-digit", month: "long" };
 const now = new Date();
 
 // Convert to a clean array
@@ -22,9 +23,10 @@ const events = Object.values(data)
   .map((event) => ({
     title: event?.summary,
     description: event?.description,
-    start: new Date(event?.start).toLocaleDateString("it-IT"),
+    start: new Date(event?.start).toLocaleDateString("it-IT", dateOpts),
     end: new Date(event?.end - 1 * 24 * 60 * 60 * 1000).toLocaleDateString(
       "it-IT",
+      dateOpts,
     ),
     startRaw: new Date(event?.start),
   }))
@@ -39,7 +41,7 @@ const events = Object.values(data)
   <body>
     <Header />
     <main>
-      <h1>Calendario Eventi</h1>
+      <h1>Calendario Eventi {now.getFullYear()}</h1>
       <div class="calendar-grid">
         {
           events.map((event) => (
