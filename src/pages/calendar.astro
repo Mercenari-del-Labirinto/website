@@ -9,6 +9,7 @@ import ical from "node-ical";
 // Fetch the ics file
 const icalUrl =
   "https://calendar.google.com/calendar/ical/c_07e44ac03455c9b1e8e5ee8c1d758a243855038cabb4afd18c567c7495304b42%40group.calendar.google.com/public/basic.ics";
+const googleCalendarLink = `https://www.google.com/calendar/render?cid=${encodeURIComponent(icalUrl)}`;
 const response = await fetch(icalUrl);
 const text = await response.text();
 const data = ical.parseICS(text);
@@ -53,7 +54,9 @@ const events = Object.values(data)
             </div>
           ))
         }
-        <div><a href={icalUrl}>Iscriviti al calendario</a></div>
+        <div>
+          <a href={googleCalendarLink}>Aggiungi al tuo Google Calendar</a>
+        </div>
       </div>
     </main>
     <Footer />
