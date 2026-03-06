@@ -17,4 +17,5 @@ repos:
       - id: prettier
         name: Prettier Formatter
         language: system
-        entry: npx prettier . --write
+        entry: npm run format
+        pass_filenames: false
