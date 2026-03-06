@@ -27,4 +27,4 @@ jobs:
       - uses: Alfresco/alfresco-build-tools/.github/actions/pre-commit@v15.7.1
         with:
           auto-commit: "true"
-          skip-checkout: "true"
+          skip_checkout: "true"
