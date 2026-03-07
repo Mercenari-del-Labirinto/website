@@ -1,6 +1,12 @@
-# mercenari
+# mercenari.org
 
 ## Running locally
+
+To install dependencies run:
+
+```sh
+npm ci
+```
 
 To start the development server run:
 
@@ -14,8 +20,7 @@ This project is deployed on Cloudflare Pages. Check [Cloudflare Pages tooling
 versions](https://developers.cloudflare.com/pages/configuration/build-image/)
 docs to decide which Node and Python versions to pin in your environment files.
 
-- Create a `.nvmrc` with the Node version you choose (e.g. `22.16.0`).
-- Create a `.python-version` with the Python version you choose (e.g. `3.13.3`).
+- Node version in [`.nvmrc`](.nvmrc)
+- Python version in [`.python-version`](.python-version)
 
-Keeping those files in the repo helps ensure consistent local and CI
-environments.
+Keeping these files up to date helps ensure consistent, reproducible and faster build as the documented versions are the ones already cached on cloudflare build image.
