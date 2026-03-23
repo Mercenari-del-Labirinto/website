@@ -24,6 +24,11 @@ jobs:
       - name: Install dev dependencies
         run: npm ci --include=dev
 
+      - name: Install apt dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jpegoptim optipng
+
       - uses: Alfresco/alfresco-build-tools/.github/actions/pre-commit@v15.7.1
         with:
           skip_checkout: "true"
