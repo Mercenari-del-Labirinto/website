@@ -19,3 +19,15 @@ repos:
         language: system
         entry: npm run format
         pass_filenames: false
+  - repo: local
+    hooks:
+      - id: jpegoptim
+        name: Optimize JPG images
+        entry: jpegoptim
+        language: system
+        types: [jpeg]
+      - id: optipng
+        name: Optimize PNG images
+        entry: optipng
+        language: system
+        types: [png]
