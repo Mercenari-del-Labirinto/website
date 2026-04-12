@@ -10,26 +10,54 @@ const icalUrl =
   "https://calendar.google.com/calendar/ical/c_07e44ac03455c9b1e8e5ee8c1d758a243855038cabb4afd18c567c7495304b42%40group.calendar.google.com/public/basic.ics";
 const googleCalendarLink = `https://www.google.com/calendar/render?cid=${encodeURIComponent(icalUrl)}`;
 const response = await fetch(icalUrl);
+if (!response.ok) {
+  throw new Error(`Calendar fetch failed with status ${response.status}`);
+}
+
 const text = await response.text();
-const data = ical.parseICS(text);
+if (!text.trim()) {
+  throw new Error("Calendar fetch returned an empty ICS payload");
+}
+
+let data;
+try {
+  data = ical.parseICS(text);
+} catch (error) {
+  const parseErrorMessage =
+    error instanceof Error ? error.message : String(error);
+  throw new Error(`Calendar ICS parse failed: ${parseErrorMessage}`, {
+    cause: error instanceof Error ? error : undefined,
+  });
+}
+
 const dateOpts = { weekday: "long", day: "2-digit", month: "long" };
 const now = new Date();
+const oneDayInMs = 24 * 60 * 60 * 1000;
 
 // Convert to a clean array
 const events = Object.values(data)
   .filter((event) => event && event.type === "VEVENT")
+  // not interested in past events, but keep ones starting today
   .filter((event) => new Date(event?.start) >= now)
   .map((event) => ({
     title: event?.summary,
     description: event?.description,
     start: new Date(event?.start).toLocaleDateString("it-IT", dateOpts),
-    end: new Date(event?.end - 1 * 24 * 60 * 60 * 1000).toLocaleDateString(
+    // all-day events end is exclusive,
+    // so we need to subtract one day to display it as we expect
+    end: new Date(event?.end - oneDayInMs).toLocaleDateString(
       "it-IT",
       dateOpts,
     ),
     startRaw: new Date(event?.start),
   }))
   .sort((a, b) => a.startRaw - b.startRaw);
+
+if (events.length === 0) {
+  throw new Error(
+    "Calendar contains 0 upcoming events; aborting build to avoid empty output",
+  );
+}
 ---
 
 <!doctype html>
