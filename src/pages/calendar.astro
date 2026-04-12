@@ -37,7 +37,7 @@ const oneDayInMs = 24 * 60 * 60 * 1000;
 // Convert to a clean array
 const events = Object.values(data)
   .filter((event) => event && event.type === "VEVENT")
-  // not interested in past events, but keep ones starting today
+  // not interested in past events
   .filter((event) => new Date(event?.start) >= now)
   .map((event) => ({
     title: event?.summary,
