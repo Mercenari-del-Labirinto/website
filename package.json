@@ -13,12 +13,12 @@
     "@astrojs/mdx": "^5.0.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.1.1",
-    "node-ical": "^0.25.6",
+    "astro": "^6.1.5",
+    "node-ical": "^0.26.0",
     "sharp": "^0.34.3"
   },
   "devDependencies": {
-    "prettier": "3.8.1",
+    "prettier": "3.8.2",
     "prettier-plugin-astro": "0.14.1"
   }
 }
