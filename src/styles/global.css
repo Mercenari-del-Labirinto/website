@@ -90,6 +90,7 @@ p {
 .prose p {
   margin-bottom: 2em;
 }
+
 /* Reduce gap when a paragraph is immediately followed by a list */
 .prose p + ul,
 .prose p + ol {
@@ -98,6 +99,15 @@ p {
 .prose img {
   margin-bottom: 2em;
 }
+
+/* Tighten spacing when an emphasized paragraph acts as an image title/caption */
+.prose img:has(+ p > em) {
+  margin-bottom: 0;
+}
+.prose img + p:has(> em) {
+  margin-top: 0.5em;
+}
+
 textarea {
   width: 100%;
   font-size: 16px;
