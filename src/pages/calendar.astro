@@ -1,4 +1,20 @@
 ---
+/**
+ * Calendar Event Display Page
+ *
+ * Purpose:
+ * Fetches and displays upcoming events from a public Google Calendar (via iCalendar feed).
+ * Handles different event types properly (all-day vs timed) and presents them with
+ * appropriate date/time formatting.
+ *
+ * Key Features:
+ * - Sanitizes event descriptions by removing Google Meet links and support documentation
+ * - Displays timed events on the same calendar day with start and end times (e.g., "14 aprile 14:30 - 16:00")
+ * - Shows full date range with times for events spanning multiple days (e.g., "14 aprile 23:00 - 15 aprile 01:00")
+ * - All-day events show the date or date range without times (e.g., "14 aprile" or "14 aprile - 16 aprile")
+ * - Events are sorted chronologically; past events are hidden, while ongoing multi-day events stay visible
+ */
+
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -31,26 +47,72 @@ try {
 }
 
 const dateOpts = { weekday: "long", day: "2-digit", month: "long" };
+const timeOpts = { hour: "2-digit", minute: "2-digit" };
+const DAY_MS = 24 * 60 * 60 * 1000;
 const now = new Date();
-const oneDayInMs = 24 * 60 * 60 * 1000;
+
+const sanitizeDescription = (description?: string) => {
+  if (!description) return undefined;
+
+  const cleaned = description
+    .split(/\r?\n/)
+    .filter(
+      (line: string) =>
+        !/google meet|meet\.google\.com|support\.google\.com\//i.test(line),
+    )
+    .join("\n")
+    .trim();
+
+  return cleaned || undefined;
+};
+
+// Helper to check if two dates are on the same calendar day
+const isSameDay = (date1: Date, date2: Date) => {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
+};
 
 // Convert to a clean array
 const events = Object.values(data)
   .filter((event) => event && event.type === "VEVENT")
-  // not interested in past events
-  .filter((event) => new Date(event?.start) >= now)
-  .map((event) => ({
-    title: event?.summary,
-    description: event?.description,
-    start: new Date(event?.start).toLocaleDateString("it-IT", dateOpts),
-    // all-day events end is exclusive,
-    // so we need to subtract one day to display it as we expect
-    end: new Date(event?.end - oneDayInMs).toLocaleDateString(
-      "it-IT",
-      dateOpts,
-    ),
-    startRaw: new Date(event?.start),
-  }))
+  // keep events that haven't ended yet (includes ongoing multi-day events)
+  .filter((event) => new Date(event?.end) >= now)
+  .map((event) => {
+    const isAllDay = !!event?.start?.dateOnly;
+    const startDate = new Date(event?.start);
+    let endDate = new Date(event?.end);
+
+    // All-day events have an exclusive end date, so subtract 24h to get
+    // the actual last day of the event for display.
+    if (isAllDay) {
+      endDate = new Date(endDate - DAY_MS);
+    }
+
+    const sameDay = isSameDay(startDate, endDate);
+    const start = startDate.toLocaleDateString("it-IT", dateOpts);
+    const end = endDate.toLocaleDateString("it-IT", dateOpts);
+    const startTime = startDate.toLocaleTimeString("it-IT", timeOpts);
+    const endTime = endDate.toLocaleTimeString("it-IT", timeOpts);
+
+    let when;
+    if (isAllDay) {
+      when = sameDay ? start : `${start} - ${end}`;
+    } else if (sameDay) {
+      when = `${start} ${startTime} - ${endTime}`;
+    } else {
+      when = `${start} ${startTime} - ${end} ${endTime}`;
+    }
+
+    return {
+      title: event?.summary,
+      description: sanitizeDescription(event?.description),
+      when,
+      startRaw: startDate,
+    };
+  })
   .sort((a, b) => a.startRaw - b.startRaw);
 
 if (events.length === 0) {
@@ -74,11 +136,7 @@ if (events.length === 0) {
           events.map((event) => (
             <div class="event-card">
               <h3>{event.title}</h3>
-              <div class="event-date">
-                {event.start !== event.end
-                  ? `${event.start} - ${event.end}`
-                  : event.start}
-              </div>
+              <div class="event-date">{event.when}</div>
               {event.description && <p>{event.description}</p>}
             </div>
           ))
