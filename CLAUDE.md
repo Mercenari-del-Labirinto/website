@@ -76,6 +76,7 @@ author: Author Name
 
 For posts with additional inline images, use an `.mdx` file, import them at the top of the file
 (after the frontmatter), and render with the Astro `<Image>` component:
+
 ```mdx
 import { Image } from "astro:assets";
 import photo from "../../../assets/2026/<slug>/photo.jpg";
