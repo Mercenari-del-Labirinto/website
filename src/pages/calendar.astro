@@ -21,29 +21,34 @@ import Header from "../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import ical from "node-ical";
 
+const skipCalendar = import.meta.env.SKIP_CALENDAR === "true";
+
 // Fetch the ics file
 const icalUrl =
   "https://calendar.google.com/calendar/ical/c_07e44ac03455c9b1e8e5ee8c1d758a243855038cabb4afd18c567c7495304b42%40group.calendar.google.com/public/basic.ics";
 const googleCalendarLink = `https://www.google.com/calendar/render?cid=${encodeURIComponent(icalUrl)}`;
-const response = await fetch(icalUrl);
-if (!response.ok) {
-  throw new Error(`Calendar fetch failed with status ${response.status}`);
-}
 
-const text = await response.text();
-if (!text.trim()) {
-  throw new Error("Calendar fetch returned an empty ICS payload");
-}
+let data: Record<string, any> = {};
+if (!skipCalendar) {
+  const response = await fetch(icalUrl);
+  if (!response.ok) {
+    throw new Error(`Calendar fetch failed with status ${response.status}`);
+  }
 
-let data;
-try {
-  data = ical.parseICS(text);
-} catch (error) {
-  const parseErrorMessage =
-    error instanceof Error ? error.message : String(error);
-  throw new Error(`Calendar ICS parse failed: ${parseErrorMessage}`, {
-    cause: error instanceof Error ? error : undefined,
-  });
+  const text = await response.text();
+  if (!text.trim()) {
+    throw new Error("Calendar fetch returned an empty ICS payload");
+  }
+
+  try {
+    data = ical.parseICS(text);
+  } catch (error) {
+    const parseErrorMessage =
+      error instanceof Error ? error.message : String(error);
+    throw new Error(`Calendar ICS parse failed: ${parseErrorMessage}`, {
+      cause: error instanceof Error ? error : undefined,
+    });
+  }
 }
 
 const dateOpts = { weekday: "long", day: "2-digit", month: "long" };
@@ -115,7 +120,7 @@ const events = Object.values(data)
   })
   .sort((a, b) => a.startRaw - b.startRaw);
 
-if (events.length === 0) {
+if (!skipCalendar && events.length === 0) {
   throw new Error(
     "Calendar contains 0 upcoming events; aborting build to avoid empty output",
   );
@@ -131,20 +136,24 @@ if (events.length === 0) {
     <Header />
     <main>
       <h1>Calendario Eventi {now.getFullYear()}</h1>
-      <div class="calendar-grid">
-        {
-          events.map((event) => (
-            <div class="event-card">
-              <h3>{event.title}</h3>
-              <div class="event-date">{event.when}</div>
-              {event.description && <p>{event.description}</p>}
+      {
+        skipCalendar ? (
+          <p>Calendario non disponibile in questa build.</p>
+        ) : (
+          <div class="calendar-grid">
+            {events.map((event) => (
+              <div class="event-card">
+                <h3>{event.title}</h3>
+                <div class="event-date">{event.when}</div>
+                {event.description && <p>{event.description}</p>}
+              </div>
+            ))}
+            <div>
+              <a href={googleCalendarLink}>Aggiungi al tuo Google Calendar</a>
             </div>
-          ))
-        }
-        <div>
-          <a href={googleCalendarLink}>Aggiungi al tuo Google Calendar</a>
-        </div>
-      </div>
+          </div>
+        )
+      }
     </main>
     <Footer />
   </body>
