@@ -26,11 +26,11 @@ Cloudflare webhook on a weekly cron and on demand).
 
 Blog posts live in `src/content/blog/<year>/` as `.md` or `.mdx` files.
 The collection schema is defined in `src/content.config.ts` — required
-frontmatter fields are `title`, `description`, `pubDate`, and `heroImage`.
-Optional: `updatedDate`, `author`, `lang` (`"it"` default or `"en"`).
+frontmatter fields are `title`, `description`, and `pubDate`.
+Optional: `heroImage`, `updatedDate`, `author`, `lang` (`"it"` default or `"en"`).
 
-Hero images go in `src/assets/<year>/<slug>/`, referenced with a relative
-path from the `.mdx` file.
+Hero images should live in `src/assets/<year>/<slug>/` (older posts may vary), referenced with a relative
+path from the post file.
 
 ### Pages
 
@@ -60,9 +60,9 @@ locally).
 
 ## Blog post structure
 
-Every post is an `.mdx` file. A hero image is always required — place it at
-`src/assets/<year>/<slug>/hero.<ext>` and reference it from the frontmatter
-with a relative path:
+Posts can be `.md` or `.mdx` (use `.mdx` when you need imports/components). Include a `heroImage`
+when available; preferred location is `src/assets/<year>/<slug>/hero.<ext>`.
+Reference it from the frontmatter with a relative path:
 
 ```mdx
 ---
@@ -74,9 +74,8 @@ author: Author Name
 ---
 ```
 
-For posts with additional inline images, import them at the top of the file
-(after the frontmatter) and render with the Astro `<Image>` component:
-
+For posts with additional inline images, use an `.mdx` file, import them at the top of the file
+(after the frontmatter), and render with the Astro `<Image>` component:
 ```mdx
 import { Image } from "astro:assets";
 import photo from "../../../assets/2026/<slug>/photo.jpg";
