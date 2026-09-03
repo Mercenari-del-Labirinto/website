@@ -145,8 +145,12 @@ della tecnologia militare europea.
 Una delle testimonianze più note è il manoscritto di Walter de Milemete, _De
 nobilitatibus, sapientiis et prudentiis regum_, realizzato nel 1326-1327. Una
 delle miniature mostra una grande balestra associata a una struttura di
-supporto, in un contesto chiaramente militare e d'assedio
-([immagine del manoscritto](https://warfarewest.x10host.com/14/Milemete-Christ_Church_Oxford_MS_92-f68v-lower-lg.htm)).
+supporto, in un contesto chiaramente militare e d'assedio.
+
+**Figura 1 — Walter de Milemete, _De nobilitatibus, sapientiis et
+prudentiis regum_, Christ Church, Oxford, MS 92, f. 68v, 1326-1327. Grande
+balestra da assedio su supporto.**
+([Immagine del manoscritto](https://warfarewest.x10host.com/14/Milemete-Christ_Church_Oxford_MS_92-f68v-lower-lg.htm))
 
 L'immagine è importante perché dimostra l'esistenza di balestre concepite per
 un impiego stazionario. Non dimostra però che il termine italiano _balestra a
@@ -156,6 +160,10 @@ Il confronto con una balestra portatile è altrettanto utile. Nel _Tacuinum
 sanitatis_ della Biblioteca Casanatense, ad esempio, compare la
 rappresentazione di un'arma molto più vicina alla balestra individuale
 utilizzata da un singolo tiratore.
+
+**Figura 2 — _Tacuinum sanitatis_, Casanatense 4182, XIV secolo.
+Rappresentazione di una balestra portatile.**
+([Biblioteca Casanatense, manoscritto digitale](https://manus.iccu.sbn.it/))
 
 Il confronto iconografico mette in evidenza una realtà che le fonti scritte
 rendono più difficile cogliere: nel Medioevo esisteva un continuum di armi,
@@ -232,8 +240,11 @@ essere utilizzata da una posizione relativamente stabile.
 
 L'iconografia europea conserva immagini di dispositivi di questo tipo. Il
 _Bellifortis_ di Konrad Kyeser, composto nei primi anni del XV secolo,
-presenta infatti dispositivi destinati alla tensione delle balestre
-([Bellifortis, Biblioteca del Congresso degli Stati Uniti](https://www.loc.gov/item/2021667363/)).
+presenta infatti dispositivi destinati alla tensione delle balestre.
+
+**Figura 3 — Konrad Kyeser, _Bellifortis_, ca. 1402-1405. Dispositivo per
+la tensione di una balestra.**
+([Biblioteca del Congresso degli Stati Uniti, _Bellifortis_](https://www.loc.gov/item/2021667363/))
 
 Il _Bellifortis_ è particolarmente significativo perché mostra la complessità
 dei sistemi meccanici associati alle armi da tiro pesanti. Anche in questo
@@ -249,11 +260,18 @@ Gli studi e i disegni di Leonardo da Vinci documentano una fase nella quale
 la balestra diventa oggetto di una vera e propria ricerca ingegneristica.
 
 Nel Codice Atlantico, il foglio 142r presenta un dispositivo destinato al
-caricamento di una grande balestra
-([Museo Galileo, Codice Atlantico, f. 142r](https://teche.museogalileo.it/leonardo/foglio/index.html?lang=en&num=ATL.0283.1)).
+caricamento di una grande balestra.
+
+**Figura 4 — Leonardo da Vinci, Codice Atlantico, f. 142r, ca. 1485-1492.
+Dispositivo per caricare una grande balestra.**
+([Museo Galileo, Leonardo, Codice Atlantico, f. 142r](https://teche.museogalileo.it/leonardo/foglio/index.html?lang=en&num=ATL.0283.1))
+
 Pochi fogli più avanti, Leonardo disegna una grande balestra di proporzioni
-spettacolari
-([Wikimedia Commons, Codice Atlantico, f. 149r](https://commons.wikimedia.org/wiki/File:Vinci,_Leonardo_da_-_Crossbow_sketch_-_1500.jpg)).
+spettacolari.
+
+**Figura 5 — Leonardo da Vinci, Codice Atlantico, f. 149r, ca. 1485-1492.
+Studio di una grande balestra.**
+([Wikimedia Commons, Leonardo da Vinci, _Crossbow sketch_](https://commons.wikimedia.org/wiki/File:Vinci,_Leonardo_da_-_Crossbow_sketch_-_1500.jpg))
 
 La presenza di questi disegni non significa che Leonardo abbia inventato una
 nuova tipologia di balestra. Dimostra piuttosto quanto, alla fine del
@@ -263,8 +281,11 @@ della forza necessaria a tenderne l'arco.
 
 Un ulteriore confronto è offerto dal _Löffelholz-Codex_, all'inizio del XVI
 secolo, nel quale compare il _Spannbock_, un'apparecchiatura destinata alla
-tensione
-([Löffelholz-Codex, f. 20r](https://commons.wikimedia.org/wiki/File:L%C3%B6ffelholz-Codex_Ms-Berol-Germ-Qu-132_Fol_020r.png)).
+tensione.
+
+**Figura 6 — _Löffelholz-Codex_, MS Berlin, Germ. Qu. 132, f. 20r, ca. 1505.
+Dispositivo di tensionamento (_Spannbock_).**
+([Wikimedia Commons, _Löffelholz-Codex_, f. 20r](https://commons.wikimedia.org/wiki/File:L%C3%B6ffelholz-Codex_Ms-Berol-Germ-Qu-132_Fol_020r.png))
 
 La sequenza iconografica mostra dunque una continuità tecnologica: grandi
 balestre, sistemi di tensionamento, banchi e strutture di supporto
@@ -281,6 +302,10 @@ panca. Sec. XV»**. La documentazione fotografica disponibile nei cataloghi
 umbri identifica esplicitamente l'oggetto con questa denominazione e
 attribuisce la fotografia a Marcello Fedeli
 ([scheda della Rocca Maggiore, Umbria Cultura](https://www.umbriacultura.it/SebinaOpac/resource/rocca-maggiore-assisi-pg/SAM9000068?KAS=true&locale=ENG)).
+
+**Figura 7 — «Balestra a panca. Sec. XV», Rocca Maggiore, Assisi.
+Fotografia Marcello Fedeli.**
+([Immagine e scheda dell'oggetto](https://www.umbriacultura.it/SebinaOpac/resource/rocca-maggiore-assisi-pg/SAM9000068?KAS=true&locale=ENG))
 
 L'oggetto presenta una configurazione molto diversa da quella di una normale
 balestra portatile. Il lungo teniere è integrato in una struttura lignea
