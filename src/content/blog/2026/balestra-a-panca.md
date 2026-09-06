@@ -619,9 +619,9 @@ senza attribuirgli informazioni tecniche che il testo non contiene.
 
 ---
 
-# Bibliografia e fonti
+## Bibliografia e fonti
 
-## Fonti primarie
+### Fonti primarie
 
 **Collenuccio, Pandolfo**, _Compendio de le istorie del Regno di Napoli_,
 Venezia, 1539, Libro VI.
@@ -658,7 +658,7 @@ architettori_, Firenze, 1550, vita del Cecca.
 architettori_, Firenze, 1568, vita del Cecca.
 ([Edizione digitale del 1568](https://it.wikisource.org/wiki/Le_vite_de%27_pi%C3%B9_eccellenti_pittori%2C_scultori_e_architettori_%281568%29/Il_Cecca))
 
-## Studi
+### Studi
 
 **De Luca, Daniele; Farinelli, Roberto**, «Archi e balestre. Un approccio
 storico-archeologico alle armi da tiro nella Toscana meridionale (secc.
@@ -669,13 +669,13 @@ XIII-XIV)», _Archeologia Medievale_, XXIX, 2002, pp. 455-487.
 **Gelli, Jacopo**, _Guida del raccoglitore e dell'amatore di armi antiche_,
 Milano, 1900.
 
-## Strumenti lessicografici
+### Strumenti lessicografici
 
 **Grande Dizionario della Lingua Italiana**, fondato da Salvatore Battaglia,
 Torino, UTET, voce _staffa_ e voce _panca_.
 ([GDLI – voce «staffa»](https://www.gdli.it/contesti/staffa/1362048))
 
-## Cataloghi e documentazione museale
+### Cataloghi e documentazione museale
 
 **Umbria Cultura**, _Rocca Maggiore. Assisi (PG)_, scheda catalografica e
 documentazione fotografica; fotografia di Marcello Fedeli, con l'oggetto
@@ -686,7 +686,7 @@ catalogato come «Balestra a panca. Sec. XV».
 «Balestra a panca. Sec. XV», fotografia Marcello Fedeli.
 ([Scheda e immagini](https://viaggiart.com/assisi/monumento/13404/rocca-maggiore.html))
 
-## Documentazione sulla tradizione contemporanea
+### Documentazione sulla tradizione contemporanea
 
 **Compagnia Balestrieri Lucca**, «Le origini».
 ([Pagina ufficiale](https://www.compagniabalestrierilucca.com/le-origini/))
