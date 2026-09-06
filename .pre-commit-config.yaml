@@ -21,6 +21,14 @@ repos:
         pass_filenames: false
   - repo: local
     hooks:
+      - id: no-h1-in-blog-body
+        name: Check for duplicate H1 in blog posts
+        entry: node scripts/check-blog-h1.mjs
+        language: system
+        pass_filenames: false
+        files: ^src/content/blog/.*\.(md|mdx)$
+  - repo: local
+    hooks:
       - id: jpegoptim
         name: Optimize JPG images
         entry: jpegoptim
