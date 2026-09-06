@@ -2,6 +2,7 @@
 title: La «balestra a panca» di Vasari
 description: "Una questione terminologica e tecnologica su cosa fosse davvero l'arma che uccise il Cecca, tra fonti storiche e balestre da banco."
 pubDate: "Sep 3 2026"
+heroImage: "../../../assets/2026/balestra-a-panca/hero.jpg"
 author: Alessandro Valli
 ---
 
